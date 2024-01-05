@@ -1,6 +1,6 @@
-package io.github.sinisterquests.base;
+package io.github.sinisterquests.api.base;
 
-import io.github.sinisterquests.base.progress.ProgressEvent;
+import io.github.sinisterquests.api.base.progress.ProgressEvent;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import java.util.*;
 
 public abstract class Quest {
-
+	
 	@Getter
 	private final String name;
 	
@@ -28,18 +28,19 @@ public abstract class Quest {
 		addLevel(new QuestLevel(1, basicGoal));
 	}
 	
+	
 	protected abstract Component display();
 	
 	protected abstract ProgressEvent event();
 	
-	protected abstract void reward(Player player, int levelCompleted);
+	public abstract void reward(Player player, int levelCompleted);
 	
 	public void addLevel(QuestLevel level) {
 		levels.putIfAbsent(level.level(), level);
 	}
 	
 	public void addLevel(int level, int levelGoal) {
-		addLevel(new QuestLevel(level,levelGoal));
+		addLevel(new QuestLevel(level, levelGoal));
 	}
 	
 	public Optional<QuestLevel> getLevel(int level) {
@@ -61,5 +62,5 @@ public abstract class Quest {
 	public int hashCode() {
 		return Objects.hash(name);
 	}
-
+	
 }

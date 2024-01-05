@@ -1,10 +1,10 @@
-package io.github.sinisterquests.base.progress;
+package io.github.sinisterquests.api.base.progress;
 
-import io.github.sinisterquests.base.Quest;
+import io.github.sinisterquests.api.base.Quest;
 import org.bukkit.event.Listener;
 
 public interface ProgressEvent extends Listener {
-
+	
 	Quest quest();
 	
 }

@@ -1,5 +1,30 @@
-package io.github.sinisterquests.database;
+package io.github.sinisterquests.api.database;
 
-public final class QuestDatabase {
-//TODO implement
+import io.github.sinisterquests.api.base.PlayerQuestContainer;
+
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+
+public interface QuestDatabase {
+	
+	Type type();
+	
+	void initialize();
+	
+	CompletableFuture<Void> givePlayerQuests(UUID uuid, PlayerQuestContainer container);
+	
+	CompletableFuture<PlayerQuestContainer> loadPlayerQuests(UUID uuid);
+	
+	CompletableFuture<Void> unloadAndSave(UUID uuid, PlayerQuestContainer container);
+	
+	enum Type {
+		
+		SQL,
+		
+		MONGO,
+		
+		YAML;
+		
+		
+	}
 }

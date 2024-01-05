@@ -1,8 +1,9 @@
-package io.github.sinisterquests.base.progress;
+package io.github.sinisterquests.api.base.progress;
 
-import io.github.sinisterquests.base.QuestLevel;
+import io.github.sinisterquests.api.base.QuestLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.Document;
 
 public final class LevelProgress {
 	
@@ -12,7 +13,8 @@ public final class LevelProgress {
 	@Getter
 	private final int maxCount;
 	
-	@Getter @Setter
+	@Getter
+	@Setter
 	private int count;
 	
 	public LevelProgress(QuestLevel level) {
@@ -22,5 +24,11 @@ public final class LevelProgress {
 	
 	public void increment() {
 		count++;
+	}
+	
+	public Document asDoc() {
+		return new Document("level", level.level())
+			.append("goal", maxCount)
+			.append("progress-count", count);
 	}
 }

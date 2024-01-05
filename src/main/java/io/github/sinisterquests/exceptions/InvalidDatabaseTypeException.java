@@ -1,2 +1,6 @@
-package io.github.sinisterquests.exceptions;public class InvalidDatabaseTypeException {
+package io.github.sinisterquests.exceptions;
+
+public final class InvalidDatabaseTypeException extends RuntimeException {
+
+
 }

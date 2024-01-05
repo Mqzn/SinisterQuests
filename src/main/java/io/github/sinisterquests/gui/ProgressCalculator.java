@@ -1,15 +1,12 @@
-package club.vades.duels.progress;
+package io.github.sinisterquests.gui;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 public interface ProgressCalculator {
 	
 	int NUMBER_OF_SQUARES = 8;
-	
-	int input();
-	
-	double percentage();
 	
 	char progressChar();
 	
@@ -22,22 +19,23 @@ public interface ProgressCalculator {
 	 * @author Mqzen
 	 * @date 7/22/2022
 	 */
-	String infoDisplay();
+	Component infoDisplay();
 	
 	
-	default String drawBar(@NonNull ChatColor progressedColor,
-	                       @NonNull ChatColor notProgressedColor) {
+	default Component drawBar(@NonNull TextColor progressedColor,
+	                          @NonNull TextColor notProgressedColor) {
 		
-		StringBuilder sb = new StringBuilder();
+		Component sb = Component.empty();
 		for (int i = 0; i < NUMBER_OF_SQUARES; i++) {
+			TextColor toUse;
 			if (i <= progressedChars()) {
-				sb.append(progressedColor);
+				toUse = progressedColor;
 			} else {
-				sb.append(notProgressedColor);
+				toUse = notProgressedColor;
 			}
-			sb.append(this.progressChar()); //
+			sb = sb.append(Component.text(this.progressChar(), toUse));
 		}
 		
-		return sb.append(" ").append(this.infoDisplay()).toString();
+		return sb.appendSpace().append(this.infoDisplay());
 	}
 }

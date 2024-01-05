@@ -1,0 +1,18 @@
+# SQL -> Mysql
+# Mongo -> MongoDB
+# Yaml -> .yml file storage
+database-type: "MONGO"
+
+mongo:
+  host: ""
+  port: 27017
+  database: ""
+  username: ""
+  password: ""
+
+sql:
+  host: ""
+  port: 3306
+  database: ""
+  username: ""
+  password: ""

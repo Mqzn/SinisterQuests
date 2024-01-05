@@ -1,10 +1,13 @@
-package io.github.sinisterquests.base;
+package io.github.sinisterquests.api.base;
 
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public final class PlayerQuestContainer implements Iterable<PlayerQuest> {
 	
+	@Getter
 	private final UUID uuid;
 	
 	private final Map<String, PlayerQuest> playerQuestMap = new HashMap<>();
@@ -13,7 +16,7 @@ public final class PlayerQuestContainer implements Iterable<PlayerQuest> {
 		this.uuid = uuid;
 	}
 	
-	public  Optional<PlayerQuest> getPlayerQuest(String name) {
+	public Optional<PlayerQuest> getPlayerQuest(String name) {
 		return Optional.ofNullable(playerQuestMap.get(name));
 	}
 	
@@ -22,7 +25,11 @@ public final class PlayerQuestContainer implements Iterable<PlayerQuest> {
 	}
 	
 	public void updateQuest(PlayerQuest quest) {
-		playerQuestMap.computeIfPresent(quest.getQuest().getName(),(id, q)-> quest);
+		playerQuestMap.computeIfPresent(quest.getQuest().getName(), (id, q) -> quest);
+	}
+	
+	public void setQuest(String name, PlayerQuest quest) {
+		playerQuestMap.put(name, quest);
 	}
 	
 	public void assignQuest(Quest quest) {
