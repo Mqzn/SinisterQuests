@@ -1,0 +1,4 @@
+name: SinisterQuests
+version: '${version}'
+main: io.github.sinisterquests.SinisterQuests
+api-version: 1.20
