@@ -27,4 +27,5 @@ public interface QuestManager {
 	
 	void progressPlayer(Player player, Quest quest);
 	
+	void unCachePlayer(UUID uniqueId);
 }

@@ -34,6 +34,9 @@ public final class RegistryListener implements Listener {
 		
 		SinisterQuestAPIProvider.get().getDatabase()
 			.unloadAndSave(player.getUniqueId(), container)
-			.whenComplete((v, ex) -> System.out.println("Saved " + player.getName() + "'s progress on his quests"));
+			.whenComplete((v, ex) -> {
+				SinisterQuestAPIProvider.get().getManager().unCachePlayer(player.getUniqueId());
+				System.out.println("Saved " + player.getName() + "'s progress on his quests");
+			});
 	}
 }

@@ -120,4 +120,9 @@ public final class SimpleQuestManager implements QuestManager {
 		});
 		
 	}
+	
+	@Override
+	public void unCachePlayer(UUID uniqueId) {
+		playerQuests.remove(uniqueId);
+	}
 }
